@@ -29,5 +29,5 @@ jobs:
         working-directory: examples/${{ matrix.directory }}
         run: |
           for i in {1..100}; do
-            run: ./scripts/test.sh
+            ./scripts/test.sh
           done
