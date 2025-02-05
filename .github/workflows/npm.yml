@@ -33,3 +33,9 @@ jobs:
       - name: Run test script
         working-directory: examples/${{ matrix.directory }}
         run: npm ci
+        
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: logs-${{ matrix.directory }}-${{ matrix.os }}
+          path: .  # or path/to/artifact
