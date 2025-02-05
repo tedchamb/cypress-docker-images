@@ -22,7 +22,6 @@ jobs:
           included-as-non-root
           ]
         os: [
-          ubuntu-24.04,     # testing Linux/amd64 platform
           ubuntu-24.04-arm  # testing Linux/arm64 platform
           ]
         exclude:
