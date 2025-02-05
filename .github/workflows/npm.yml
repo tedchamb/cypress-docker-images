@@ -38,10 +38,11 @@ jobs:
         run: npm ci
 
       - name: chown
+        if: failure()
         run: sudo chown -R runner:runner /var/log*
         
       - uses: actions/upload-artifact@v4
-        if: always()
+        if: failure()
         with:
           name: logs-${{ matrix.directory }}-${{ matrix.os }}
           path: |
