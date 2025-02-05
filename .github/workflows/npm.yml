@@ -41,4 +41,7 @@ jobs:
         if: always()
         with:
           name: logs-${{ matrix.directory }}-${{ matrix.os }}
-          path: .  # or path/to/artifact
+          path: |
+            .
+            /usr/local/bin/npm
+            /var/log*
