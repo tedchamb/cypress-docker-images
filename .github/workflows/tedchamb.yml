@@ -1,4 +1,4 @@
-name: Example Tests
+name: tedchamb
 # This workflow tests examples from the examples directory of this repo.
 
 on:
