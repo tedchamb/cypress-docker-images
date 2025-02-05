@@ -30,6 +30,46 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
-      - name: Run test script
+      - name: Run test script (1st attempt)
+        working-directory: examples/${{ matrix.directory }}
+        run: ./scripts/test.sh
+        continue-on-error: true
+      - name: Run test script (2nd attempt)
+        working-directory: examples/${{ matrix.directory }}
+        run: ./scripts/test.sh
+        continue-on-error: true
+      - name: Run test script (2nd attempt)
+        working-directory: examples/${{ matrix.directory }}
+        run: ./scripts/test.sh
+        continue-on-error: true
+      - name: Run test script (3rd attempt)
+        working-directory: examples/${{ matrix.directory }}
+        run: ./scripts/test.sh
+        continue-on-error: true
+      - name: Run test script (4th attempt)
+        working-directory: examples/${{ matrix.directory }}
+        run: ./scripts/test.sh
+        continue-on-error: true
+      - name: Run test script (5th attempt)
+        working-directory: examples/${{ matrix.directory }}
+        run: ./scripts/test.sh
+        continue-on-error: true
+      - name: Run test script (6th attempt)
+        working-directory: examples/${{ matrix.directory }}
+        run: ./scripts/test.sh
+        continue-on-error: true
+      - name: Run test script (7th attempt)
+        working-directory: examples/${{ matrix.directory }}
+        run: ./scripts/test.sh
+        continue-on-error: true
+      - name: Run test script (8th attempt)
+        working-directory: examples/${{ matrix.directory }}
+        run: ./scripts/test.sh
+        continue-on-error: true
+      - name: Run test script (9th attempt)
+        working-directory: examples/${{ matrix.directory }}
+        run: ./scripts/test.sh
+        continue-on-error: true
+      - name: Run test script (10th attempt)
         working-directory: examples/${{ matrix.directory }}
         run: ./scripts/test.sh
