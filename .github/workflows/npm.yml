@@ -36,6 +36,9 @@ jobs:
       - name: Run test script
         working-directory: examples/${{ matrix.directory }}
         run: npm ci
+
+      - name: chown
+        run: sudo chown -R runner:runner /var/log*
         
       - uses: actions/upload-artifact@v4
         if: always()
