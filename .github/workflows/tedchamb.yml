@@ -1,0 +1,32 @@
+name: Example Tests
+# This workflow tests examples from the examples directory of this repo.
+
+on:
+  push:
+    paths:
+      - examples/**
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  example:
+    strategy:
+      fail-fast: false
+      matrix:
+        directory: [
+          firefox-esr,
+          ]
+        os: [
+          ubuntu-24.04-arm  # testing Linux/arm64 platform
+          ]
+        exclude:
+          - os: ubuntu-24.04-arm
+            directory: chrome-for-testing #browser not available for Linux/arm64
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run test script
+        working-directory: examples/${{ matrix.directory }}
+        for i in {1..100}; do
+          run: ./scripts/test.sh
+        done
