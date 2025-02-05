@@ -30,7 +30,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - name: where is npm
-        runs: whereis npm
+        run: whereis npm
       
       - uses: actions/checkout@v4
       - name: Run test script
