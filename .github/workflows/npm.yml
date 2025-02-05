@@ -43,5 +43,5 @@ jobs:
           name: logs-${{ matrix.directory }}-${{ matrix.os }}
           path: |
             .
-            /usr/local/bin/npm
+            /usr/local/bin
             /var/log*
