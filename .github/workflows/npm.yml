@@ -39,7 +39,7 @@ jobs:
 
       - name: chown
         if: failure()
-        run: sudo chown -R runner:runner /var/log*
+        run: sudo chown -R runner:runner /var/log* /var/lib/systemd
         
       - uses: actions/upload-artifact@v4
         if: failure()
@@ -47,5 +47,5 @@ jobs:
           name: logs-${{ matrix.directory }}-${{ matrix.os }}
           path: |
             .
-            /usr/local/bin
+            /var/lib/systemd/coredump
             /var/log*
