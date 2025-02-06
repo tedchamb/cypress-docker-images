@@ -1,4 +1,4 @@
-name: tedchamb-npmciloop
+name: tedchamb-reinstall
 # This workflow tests examples from the examples directory of this repo.
 
 on:
@@ -14,7 +14,12 @@ jobs:
       fail-fast: false
       matrix:
         directory: [
+          basic-mini,
+          basic,
+          chrome-for-testing,
+          chromium,
           firefox-esr,
+          included-as-non-root
           ]
         os: [
           ubuntu-24.04-arm  # testing Linux/arm64 platform
@@ -43,4 +48,3 @@ jobs:
             rm -rf node_modules package-lock.json
             npm install
           done
-          
