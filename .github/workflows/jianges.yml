@@ -33,8 +33,6 @@ jobs:
         run: |
           echo "ACTIONS_STEP_DEBUG=true" >> $GITHUB_ENV
           echo "ACTIONS_RUNNER_DEBUG=true" >> $GITHUB_ENV
-      - uses: actions/checkout@v4
-        continue-on-error: false
       - name: Reinstall Docker
         run: |
           ps aux | grep systemd
@@ -62,6 +60,8 @@ jobs:
       - name: Check docker.service status
         run: sudo systemctl status docker.service
         continue-on-error: true
+      - uses: actions/checkout@v4
+        continue-on-error: false
       - name: Run test script
         working-directory: examples/${{ matrix.directory }}
         run: ./scripts/test.sh
