@@ -28,7 +28,9 @@ jobs:
       - name: Run test script
         working-directory: examples/${{ matrix.directory }}
         run: |
+          set -e
+          set -x
           for i in {1..100}; do
-            npm ci && npm cache clean --force
+            npm ci
+            npm cache clean --force
           done
-          
