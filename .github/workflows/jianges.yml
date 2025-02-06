@@ -33,8 +33,11 @@ jobs:
         run: echo "ACTIONS_STEP_DEBUG=true" >> $GITHUB_ENV
       - name: Reinstall Docker
         run: |
-          sudo apt-get remove docker docker-engine docker.io containerd runc
+          ps aux | grep systemd
+          sudo systemctl daemon-reexec
+          sudo ls -l /var/run/docker.sock
           sudo apt-get install docker.io
+        continue-on-error: true
       - uses: actions/checkout@v4
         continue-on-error: true
       - name: Check docker status
