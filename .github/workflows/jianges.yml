@@ -30,6 +30,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
+        continue-on-error: true
       - name: Check docker status
         run: sudo systemctl status docker
         continue-on-error: true
@@ -38,6 +39,9 @@ jobs:
         continue-on-error: true
       - name: Restart Docker
         run: sudo systemctl restart docker
+        continue-on-error: true
+      - name: Check docker.service status
+        run: sudo systemctl status docker.service
         continue-on-error: true
       - name: Enable debug logging
         run: echo "ACTIONS_STEP_DEBUG=true" >> $GITHUB_ENV
