@@ -29,6 +29,8 @@ jobs:
             directory: chrome-for-testing #browser not available for Linux/arm64
     runs-on: ${{ matrix.os }}
     steps:
+      - name: Enable debug logging
+        run: echo "ACTIONS_STEP_DEBUG=true" >> $GITHUB_ENV
       - uses: actions/checkout@v4
         continue-on-error: true
       - name: Check docker status
@@ -43,8 +45,6 @@ jobs:
       - name: Check docker.service status
         run: sudo systemctl status docker.service
         continue-on-error: true
-      - name: Enable debug logging
-        run: echo "ACTIONS_STEP_DEBUG=true" >> $GITHUB_ENV
       - name: Run test script
         working-directory: examples/${{ matrix.directory }}
         run: ./scripts/test.sh
