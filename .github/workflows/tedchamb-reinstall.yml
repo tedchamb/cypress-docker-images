@@ -30,7 +30,6 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - name: reinstall
-        working-directory: examples/${{ matrix.directory }}
         run: |
           set -e
           set -x
