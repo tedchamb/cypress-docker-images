@@ -38,12 +38,11 @@ jobs:
           ps aux | grep systemd
           sudo systemctl daemon-reexec
           sudo ls -l /var/run/docker.sock
-        continue-on-error: false
-      - name: Reboot
-        if: failure()
-        run: sudo reboot
+        continue-on-error: true
       - name: Check docker status
-        run: sudo systemctl status docker
+        run: |
+          sudo systemctl status docker
+          sudo systemctl is-active docker
         continue-on-error: true
       - name: Start Docker in case it's not running on arm VMs
         run: sudo systemctl start docker
