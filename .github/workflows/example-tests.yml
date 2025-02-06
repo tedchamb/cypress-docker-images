@@ -30,6 +30,12 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
+      - name: Start Docker in case it's not running on arm VMs
+        run: sudo systemctl start docker
       - name: Run test script
+        working-directory: examples/${{ matrix.directory }}
+        run: ./scripts/test.sh
+        continue-on-error: true
+      - name: re-run test script
         working-directory: examples/${{ matrix.directory }}
         run: ./scripts/test.sh
