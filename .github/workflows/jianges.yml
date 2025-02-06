@@ -36,6 +36,7 @@ jobs:
           ps aux | grep systemd
           sudo systemctl daemon-reexec
           sudo ls -l /var/run/docker.sock
+          sudo journalctl -xe
           sudo apt-get install docker.io
         continue-on-error: true
       - uses: actions/checkout@v4
@@ -49,8 +50,7 @@ jobs:
       - name: Restart Docker
         run: |
           sudo systemctl restart docker
-          sudo killall -9 dockerd
-          sudo /usr/local/share/docker-init.sh
+          sudo journalctl -u docker
         continue-on-error: true
       - name: Check docker.service status
         run: sudo systemctl status docker.service
