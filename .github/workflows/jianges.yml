@@ -53,6 +53,8 @@ jobs:
         run: |
           sudo systemctl restart docker
           sudo journalctl -u docker
+          sudo journalctl -u docker.service --since "10 minutes ago"
+          sudo journalctl -xe
         continue-on-error: true
       - name: Check docker.service status
         run: sudo systemctl status docker.service
