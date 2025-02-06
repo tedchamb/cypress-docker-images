@@ -47,7 +47,10 @@ jobs:
         run: sudo systemctl start docker
         continue-on-error: true
       - name: Restart Docker
-        run: sudo systemctl restart docker
+        run: |
+          sudo systemctl restart docker
+          sudo killall -9 dockerd
+          sudo /usr/local/share/docker-init.sh
         continue-on-error: true
       - name: Check docker.service status
         run: sudo systemctl status docker.service
