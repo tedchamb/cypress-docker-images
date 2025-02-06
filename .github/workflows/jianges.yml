@@ -31,16 +31,14 @@ jobs:
     steps:
       - name: Enable debug logging
         run: echo "ACTIONS_STEP_DEBUG=true" >> $GITHUB_ENV
+      - uses: actions/checkout@v4
+        continue-on-error: false
       - name: Reinstall Docker
         run: |
           ps aux | grep systemd
           sudo systemctl daemon-reexec
           sudo ls -l /var/run/docker.sock
-          sudo journalctl -xe
-          sudo apt-get install docker.io
         continue-on-error: true
-      - uses: actions/checkout@v4
-        continue-on-error: false
       - name: Check docker status
         run: sudo systemctl status docker
         continue-on-error: true
@@ -62,3 +60,15 @@ jobs:
       - name: re-run test script
         working-directory: examples/${{ matrix.directory }}
         run: ./scripts/test.sh
+      - name: chown
+        if: failure()
+        run: sudo chown -R runner:runner /var/log* /var/lib/systemd
+        
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: logs-${{ matrix.directory }}-${{ matrix.os }}
+          path: |
+            .
+            /var/lib/systemd/coredump
+            /var/log*
