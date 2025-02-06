@@ -32,7 +32,7 @@ jobs:
       - name: Enable debug logging
         run: echo "ACTIONS_STEP_DEBUG=true" >> $GITHUB_ENV
       - name: Reinstall Docker
-        run: run: |
+        run: |
           sudo apt-get remove docker docker-engine docker.io containerd runc
           sudo apt-get install docker.io
       - uses: actions/checkout@v4
