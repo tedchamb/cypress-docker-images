@@ -42,16 +42,19 @@ jobs:
           sudo ls -l /var/run/docker.sock
         continue-on-error: true
       - name: Check docker status
-        run: |
-          sudo systemctl status docker
-          sudo systemctl is-active docker
+        run: sudo systemctl status docker
+        continue-on-error: true
+      - name: Check docker is-active
+        run: sudo systemctl is-active docker
         continue-on-error: true
       - name: Start Docker in case it's not running on arm VMs
         run: sudo systemctl start docker
         continue-on-error: true
       - name: Restart Docker
+        run: sudo systemctl restart docker
+        continue-on-error: true
+      - name: Check logs with journalctl
         run: |
-          sudo systemctl restart docker
           sudo journalctl -u docker
           sudo journalctl -u docker.service --since "10 minutes ago"
           sudo journalctl -xe
