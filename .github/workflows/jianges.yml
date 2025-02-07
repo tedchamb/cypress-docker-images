@@ -30,6 +30,13 @@ jobs:
           test3,
           test4
           ]
+        more: [
+          m1,
+          m2,
+          m3,
+          m4,
+          m5
+          ]
         exclude:
           - os: ubuntu-24.04-arm
             directory: chrome-for-testing #browser not available for Linux/arm64
