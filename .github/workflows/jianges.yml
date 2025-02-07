@@ -38,34 +38,34 @@ jobs:
           ps aux | grep systemd
           sudo systemctl daemon-reexec
           sudo ls -l /var/run/docker.sock
-        continue-on-error: true
+        continue-on-error: false
       - name: Check docker status
         run: sudo systemctl status docker
-        continue-on-error: true
+        continue-on-error: false
       - name: Check docker is-active
         run: sudo systemctl is-active docker
-        continue-on-error: true
+        continue-on-error: false
       - name: Start Docker in case it's not running on arm VMs
         run: sudo systemctl start docker
-        continue-on-error: true
+        continue-on-error: false
       - name: Restart Docker
         run: sudo systemctl restart docker
-        continue-on-error: true
+        continue-on-error: false
       - name: Check logs with journalctl
         run: |
           sudo journalctl -u docker
           sudo journalctl -u docker.service --since "10 minutes ago"
           sudo journalctl -xe
-        continue-on-error: true
+        continue-on-error: false
       - name: Check docker.service status
         run: sudo systemctl status docker.service
-        continue-on-error: true
+        continue-on-error: false
       - uses: actions/checkout@v4
         continue-on-error: false
       - name: Run test script
         working-directory: examples/${{ matrix.directory }}
         run: ./scripts/test.sh
-        continue-on-error: true
+        continue-on-error: false
       - name: re-run test script
         working-directory: examples/${{ matrix.directory }}
         run: ./scripts/test.sh
