@@ -24,6 +24,12 @@ jobs:
         os: [
           ubuntu-24.04-arm  # testing Linux/arm64 platform
           ]
+        tests: [
+          test1,
+          test2,
+          test3,
+          test4
+          ]
         exclude:
           - os: ubuntu-24.04-arm
             directory: chrome-for-testing #browser not available for Linux/arm64
