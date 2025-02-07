@@ -2,6 +2,8 @@ name: Jianges Tests
 # This workflow tests examples from the examples directory of this repo.
 
 on:
+  schedule:
+    - cron: '*/15 * * * *'
   push:
     paths:
       - examples/**
