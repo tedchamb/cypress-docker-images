@@ -17,7 +17,9 @@ jobs:
         run: curl -s -H Metadata:true --noproxy "*" "http://169.254.169.254/metadata/instance?api-version=2021-02-01" | jq      
         
       - name: where is npm
-        run: whereis npm
+        run: | 
+          whereis npm
+          whereis valgrind
       
       - uses: actions/checkout@v4
       - name: Run test script
