@@ -1,11 +1,7 @@
-name: npm ci
+name: npm seg fault
 # This workflow tests examples from the examples directory of this repo.
 
 on:
-  push:
-    paths:
-      - examples/**
-  pull_request:
   workflow_dispatch:
 
 jobs:
@@ -13,20 +9,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        directory: [
-          basic-mini,
-          basic,
-          chrome-for-testing,
-          chromium,
-          firefox-esr,
-          included-as-non-root
-          ]
-        os: [
-          ubuntu-24.04-arm  # testing Linux/arm64 platform
-          ]
-        exclude:
-          - os: ubuntu-24.04-arm
-            directory: chrome-for-testing #browser not available for Linux/arm64
+        directory: [1,2,3,4,5,6]
+        os: [ ubuntu-24.04-arm ]
     runs-on: ${{ matrix.os }}
     steps:
       - name: vm info
@@ -37,7 +21,6 @@ jobs:
       
       - uses: actions/checkout@v4
       - name: Run test script
-        working-directory: examples/${{ matrix.directory }}
         run: npm --version
 
       - name: chown
@@ -49,6 +32,5 @@ jobs:
         with:
           name: logs-${{ matrix.directory }}-${{ matrix.os }}
           path: |
-            .
             /var/lib/systemd/coredump
             /var/log*
