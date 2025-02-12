@@ -20,10 +20,11 @@ jobs:
         run: | 
           whereis npm
           whereis valgrind
+          sudo apt install valgrind -y
       
       - uses: actions/checkout@v4
       - name: Run test script
-        run: /usr/lib/valgrind npm --version
+        run: valgrind npm --version
 
       - name: chown
         if: failure()
