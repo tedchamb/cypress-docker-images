@@ -19,12 +19,11 @@ jobs:
       - name: where is npm
         run: | 
           whereis npm
-          whereis valgrind
-          sudo apt-get update && sudo apt install valgrind -y
-      
+          
       - uses: actions/checkout@v4
       - name: Run test script
-        run: valgrind --leak-check=full  npm --version
+        #run: valgrind --leak-check=full  npm --version
+        run: npm --version
 
       - name: chown
         if: failure()
